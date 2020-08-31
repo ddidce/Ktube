@@ -1,0 +1,11 @@
+{
+  "name": "ktube",
+  "version": "1.0.0",
+  "description": "cloning youtube",
+  "main": "index.js",
+  "author": "KYS",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
