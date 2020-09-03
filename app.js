@@ -5,8 +5,8 @@ import morgan from "morgan";
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { localsMiddleware } from "./middleware";
 import routes from './routes';
+import { localsMiddleware } from "./middleware";
 import userRouter from './routers/userRouter';
 import videoRouter from './routers/videoRouter';
 import globalRouter from './routers/globalRouter';
@@ -14,7 +14,7 @@ import globalRouter from './routers/globalRouter';
 const app = express();
 
 //helmet사용은 보안을 위해서 사용한다.
-app.use(helmet());
+app.use( helmet({ contentSecurityPolicy: false, }));
 app.set('view engine', "pug");
 app.use(cookieParser());
 app.use(bodyParser.json({extends : true}));
