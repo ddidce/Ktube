@@ -5,6 +5,7 @@ import morgan from "morgan";
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import { localsMiddleware } from "./middleware";
 import routes from './routes';
 import userRouter from './routers/userRouter';
 import videoRouter from './routers/videoRouter';
@@ -13,12 +14,21 @@ import globalRouter from './routers/globalRouter';
 const app = express();
 
 //helmet사용은 보안을 위해서 사용한다.
+app.use(helmet());
 app.set('view engine', "pug");
 app.use(cookieParser());
 app.use(bodyParser.json({extends : true}));
 app.use(bodyParser.urlencoded({extends : true}));
-app.use(helmet());
 app.use(morgan("dev"));
+
+//local변수를 global변수로 사용하도록 만들어 주는것
+// app.use((req, res, next) => {
+
+// })
+
+
+
+app.use(localsMiddleware)
 
 //use의 의미는 누군가가 /user 경로에 접속하면 router.js에있는 모든 걸 쓰겠다는 뜻
 app.use(routes.home, globalRouter);
